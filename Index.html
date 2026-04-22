@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>上海醫美項目報價單</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;900&display=swap" rel="stylesheet">
+    <style>
+        * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: #000; color: #d4af37; font-family: 'Noto Serif TC', serif; padding-bottom: 80px; }
+
+        /* 標題與法律說明 */
+        .header { text-align: center; padding: 50px 20px 30px; background: #0a0a0a; border-bottom: 1px solid #222; }
+        h1 { font-size: 20px; font-weight: 900; letter-spacing: 5px; color: #f1d279; margin-bottom: 15px; }
+        .legal-notice { font-size: 11px; color: #888; line-height: 1.6; max-width: 320px; margin: 0 auto; letter-spacing: 0.5px; }
+        
+        .promo-banner { 
+            background: linear-gradient(90deg, transparent, #8e6d13, transparent);
+            color: #fff; font-size: 13px; padding: 8px 0; margin: 25px 0; letter-spacing: 2px; font-weight: 600;
+        }
+
+        /* 導覽列 */
+        .category-nav {
+            display: flex; overflow-x: auto; white-space: nowrap; background: #000;
+            position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #d4af37;
+        }
+        .nav-item { padding: 18px 20px; font-size: 14px; color: #666; cursor: pointer; transition: 0.3s; }
+        .nav-item.active { color: #f1d279; font-weight: 600; text-shadow: 0 0 10px rgba(241, 210, 121, 0.5); }
+
+        /* 列表樣式 */
+        .content-section { display: none; width: 92%; max-width: 500px; margin: 0 auto; padding-top: 20px; }
+        .content-section.active { display: block; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .price-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 10px; border-bottom: 0.5px solid #1a1a1a;
+        }
+        .item-info { flex: 1; padding-right: 15px; }
+        .item-name { font-size: 15px; color: #e5c060; font-weight: 600; }
+        .item-sub { font-size: 11px; color: #666; margin-top: 6px; line-height: 1.5; }
+        .item-price { font-size: 15px; font-weight: 600; color: #f1d279; white-space: nowrap; }
+
+        /* 底部資訊區 */
+        .info-card { 
+            width: 90%; max-width: 500px; margin: 40px auto 20px; padding: 25px; 
+            border: 0.5px solid #8e6d13; background: #050505; text-align: left;
+        }
+        .info-card p { font-size: 13px; line-height: 1.8; color: #d4af37; margin-bottom: 10px; }
+        .highlight { color: #fff; font-weight: 600; text-decoration: underline; }
+
+        /* 聯絡資訊頁尾 */
+        .contact-footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #1a1a1a;
+            color: #d4af37;
+            font-size: 14px;
+            line-height: 1.8;
+            letter-spacing: 1px;
+        }
+        .contact-footer .platform { color: #8e6d13; font-size: 12px; margin-right: 5px; text-transform: uppercase; }
+
+        /* 捲軸隱藏 */
+        .category-nav::-webkit-scrollbar { height: 0px; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>上海醫美診所公司優惠</h1>
+    <p class="legal-notice">
+        ※ 為符合相關法規隱私保護及避免不當競爭，頁面價格部分數字以 xxx 遮蔽，實際準確報價請以私訊諮詢為準。
+    </p>
+    <div class="promo-banner">項目越多．折扣越多</div>
+</div>
+
+<div class="category-nav" id="catNav">
+    <div class="nav-item active" onclick="showCat('eyes', event)">眼睛項目</div>
+    <div class="nav-item" onclick="showCat('nose', event)">鼻/耳/下巴</div>
+    <div class="nav-item" onclick="showCat('lips', event)">唇部/人中</div>
+    <div class="nav-item" onclick="showCat('body', event)">吸脂瘦身</div>
+    <div class="nav-item" onclick="showCat('breast', event)">胸部假體</div>
+    <div class="nav-item" onclick="showCat('other', event)">其他雜費</div>
+</div>
+
+<div id="eyes" class="content-section active">
+    <div class="price-row"><div class="item-info"><div class="item-name">眼綜合五項</div><div class="item-sub">全切+内眼角+外眼角+提肌+下至</div></div><div class="item-price">12xxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">眼部任選三項</div><div class="item-sub">全切/內眼角/外眼角/下至</div></div><div class="item-price">8xxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">眉弓（硅膠）</div></div><div class="item-price">9xxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">眉弓（膨體）</div></div><div class="item-price">11xx¥</div></div>
+</div>
+
+<div id="nose" class="content-section">
+    <div class="price-row"><div class="item-info"><div class="item-name">超肋鼻綜合隆鼻（硅膠）</div></div><div class="item-price">24xxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">肋軟骨鼻綜合隆鼻（硅膠）</div></div><div class="item-price">27xxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">異體骨鼻綜合隆鼻（硅膠）</div></div><div class="item-price">27xxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">超體耳軟骨鼻</div></div><div class="item-price">23xxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">精靈耳（硅膠）</div></div><div class="item-price">12xxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">精靈耳（膨體）</div></div><div class="item-price">17xxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">下巴（硅膠）</div></div><div class="item-price">9xxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">下巴（膨體）</div></div><div class="item-price">11xxx¥</div></div>
+</div>
+
+<div id="lips" class="content-section">
+    <div class="price-row"><div class="item-info"><div class="item-name">唇部大綜合</div><div class="item-sub">上唇+下唇+嘴角上揚</div></div><div class="item-price">13xxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">唇部小綜合</div><div class="item-sub">上唇+下唇</div></div><div class="item-price">8xxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">人中縮短</div></div><div class="item-price">1xxxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">人中加深</div></div><div class="item-price">6xxx¥</div></div>
+</div>
+
+<div id="body" class="content-section">
+    <div class="price-row"><div class="item-info"><div class="item-name">面部吸脂套餐</div><div class="item-sub">面頰+雙下巴</div></div><div class="item-price">1xxxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">面部吸脂</div><div class="item-sub">面頰 or 雙下巴 (單項)</div></div><div class="item-price">6xxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">手臂吸脂</div></div><div class="item-price">8xxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">副乳吸脂</div></div><div class="item-price">7xxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">肩胛吸脂</div></div><div class="item-price">7xxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">背部吸脂</div></div><div class="item-price">9xxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">媽媽臀吸脂</div></div><div class="item-price">7xxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">腰腹環吸 + 馬甲線</div><div class="item-sub">13xxx¥ + 2xxx¥</div></div><div class="item-price">15xxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">折角腰</div></div><div class="item-price">12xxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">大腿環吸</div></div><div class="item-price">11xxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">小腿吸脂</div></div><div class="item-price">7xxx¥</div></div>
+</div>
+
+<div id="breast" class="content-section">
+    <div class="price-row"><div class="item-info"><div class="item-name">曼托 假體</div><div class="item-sub">毛面/光面 (水滴另加價)</div></div><div class="item-price">27xxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">奧諾拉（閃耀）</div></div><div class="item-price">42xxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">奧諾拉（星熠）</div></div><div class="item-price">47xxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">奧諾拉（炫耀）</div></div><div class="item-price">47xxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">奧諾拉（璀璨）</div></div><div class="item-price">52xxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">魔滴女王</div></div><div class="item-price">44xxx¥</div></div>
+</div>
+
+<div id="other" class="content-section">
+    <div class="price-row"><div class="item-info"><div class="item-name">全身麻醉</div></div><div class="item-price">2xxx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">術前體檢</div></div><div class="item-price">8xx¥</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">住院兩天</div></div><div class="item-price">免費</div></div>
+    <div class="price-row"><div class="item-info"><div class="item-name">專業護工</div></div><div class="item-price">4xx¥ /天</div></div>
+</div>
+
+<div class="info-card">
+    <p>💡 <span class="highlight">項目越多，折扣越多</span></p>
+    <p>📩 以上僅列出部分熱門項目，想了解更多項目價格或細節，請直接私訊諮詢。案例圖也請私訊 ps:因為放照片到網站上是一個大工程 我有點懶（¯﹃¯）</p>
+</div>
+
+<div class="contact-footer">
+    <span class="platform">連絡資訊thread:</span> 狂抽客人嫩腚 soednfg 👈🏻<br>
+    <span class="platform">ig:</span> 即將開啟
+</div>
+
+<script>
+    function showCat(catId, event) {
+        const sections = document.querySelectorAll('.content-section');
+        sections.forEach(s => s.classList.remove('active'));
+        document.getElementById(catId).classList.add('active');
+
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(n => n.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+        
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
