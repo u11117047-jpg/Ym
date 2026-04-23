@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>上海醫美項目報價單</title>
+    <title>上海醫美診所公司優惠</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;900&display=swap" rel="stylesheet">
     <style>
         * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; margin: 0; padding: 0; }
@@ -41,9 +41,27 @@
         .item-sub { font-size: 11px; color: #666; margin-top: 6px; line-height: 1.5; }
         .item-price { font-size: 15px; font-weight: 600; color: #f1d279; white-space: nowrap; }
 
+        /* 點擊解鎖價格樣式 */
+        .price-click-zone { cursor: pointer; transition: 0.3s; background: rgba(142, 109, 19, 0.05); border-left: 2px solid #ff4d4d; }
+        .original-strike { text-decoration: line-through; font-size: 12px; color: #555; margin-right: 5px; }
+        .special-badge { background: #ff4d4d; color: #fff; font-size: 10px; padding: 2px 5px; border-radius: 3px; margin-bottom: 5px; display: inline-block; }
+        .final-sponsor-price { color: #ff4d4d !important; font-weight: 900; display: none; font-size: 16px; }
+        .important { color: #f1d279; font-weight: 600; text-decoration: underline; }
+
+        /* 刮刮樂補貼區 */
+        .subsidy-card {
+            width: 90%; max-width: 500px; margin: 40px auto 20px; padding: 25px;
+            border: 1px solid #f1d279; background: #050505; text-align: center; border-radius: 4px;
+        }
+        .subsidy-title { font-size: 18px; font-weight: 900; color: #f1d279; margin-bottom: 10px; letter-spacing: 2px; }
+        
+        .scratch-container { position: relative; width: 100%; height: 130px; background: #111; margin-top: 15px; border: 1px dashed #8e6d13; overflow: hidden; cursor: crosshair; }
+        .scratch-content { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10px; }
+        canvas { position: absolute; top: 0; left: 0; z-index: 10; touch-action: none; }
+
         /* 底部資訊區 */
         .info-card { 
-            width: 90%; max-width: 500px; margin: 40px auto 20px; padding: 25px; 
+            width: 90%; max-width: 500px; margin: 20px auto; padding: 25px; 
             border: 0.5px solid #8e6d13; background: #050505; text-align: left;
         }
         .info-card p { font-size: 13px; line-height: 1.8; color: #d4af37; margin-bottom: 10px; }
@@ -51,13 +69,8 @@
 
         /* 聯絡資訊頁尾 */
         .contact-footer {
-            text-align: center;
-            padding: 40px 20px;
-            border-top: 1px solid #1a1a1a;
-            color: #d4af37;
-            font-size: 14px;
-            line-height: 1.8;
-            letter-spacing: 1px;
+            text-align: center; padding: 40px 20px; border-top: 1px solid #1a1a1a;
+            color: #d4af37; font-size: 14px; line-height: 1.8; letter-spacing: 1px;
         }
         .contact-footer .platform { color: #8e6d13; font-size: 12px; margin-right: 5px; text-transform: uppercase; }
 
@@ -95,7 +108,19 @@
     <div class="price-row"><div class="item-info"><div class="item-name">超肋鼻綜合隆鼻（硅膠）</div></div><div class="item-price">24xxx¥</div></div>
     <div class="price-row"><div class="item-info"><div class="item-name">肋軟骨鼻綜合隆鼻（硅膠）</div></div><div class="item-price">27xxx¥</div></div>
     <div class="price-row"><div class="item-info"><div class="item-name">異體骨鼻綜合隆鼻（硅膠）</div></div><div class="item-price">27xxx¥</div></div>
-    <div class="price-row"><div class="item-info"><div class="item-name">超體耳軟骨鼻</div></div><div class="item-price">16xxx¥</div></div>
+    
+    <div class="price-row price-click-zone" onclick="toggleSponsor(this)">
+        <div class="item-info">
+            <span class="special-badge">公司贊助專案</span>
+            <div class="item-name">超體耳軟骨鼻</div>
+            <div class="item-sub">原價 23xxx¥ → <span class="important">點擊解鎖最終價</span></div>
+        </div>
+        <div class="item-price">
+            <span class="price-text"><span class="original-strike">23xxx¥</span> 2xxxx¥</span>
+            <span class="final-sponsor-price">公司贊助後 17xxx¥</span>
+        </div>
+    </div>
+
     <div class="price-row"><div class="item-info"><div class="item-name">精靈耳（硅膠）</div></div><div class="item-price">12xxx¥</div></div>
     <div class="price-row"><div class="item-info"><div class="item-name">精靈耳（膨體）</div></div><div class="item-price">17xxx¥</div></div>
     <div class="price-row"><div class="item-info"><div class="item-name">下巴（硅膠）</div></div><div class="item-price">9xxx¥</div></div>
@@ -139,6 +164,23 @@
     <div class="price-row"><div class="item-info"><div class="item-name">專業護工</div></div><div class="item-price">4xx¥ /天</div></div>
 </div>
 
+<div class="subsidy-card">
+    <div class="subsidy-title">🎁 經紀公司加碼贊助</div>
+    <p style="font-size: 13px; color: #bbb;">《感謝公關提升自身形象 公司自己再貼給你》</p>
+    
+    <div class="scratch-container" id="scratch-subsidy">
+        <div class="scratch-content">
+            <span style="color:#f1d279; font-weight:900; font-size:18px;">每多加一項，再補貼 500¥ ～ 1500¥</span>
+            <p style="font-size:13px; color:#fff; margin-top:10px; line-height:1.6;">
+                這不是一次性折扣！<br>
+                是<span style="color:#ff4d4d; font-weight:bold;">每加一項</span>就多補貼一份！<br>
+                加兩項貼兩份，無補貼上限！
+            </p>
+        </div>
+        <canvas id="canvas-subsidy"></canvas>
+    </div>
+</div>
+
 <div class="info-card">
     <p>💡 <span class="highlight">項目越多，折扣越多</span></p>
     <p>📩 以上僅列出部分熱門項目，想了解更多項目價格或細節，請直接私訊諮詢。案例圖也請私訊 ps:因為放照片到網站上是一個大工程 我有點懶（¯﹃¯）</p>
@@ -150,6 +192,7 @@
 </div>
 
 <script>
+    // 導覽列切換
     function showCat(catId, event) {
         const sections = document.querySelectorAll('.content-section');
         sections.forEach(s => s.classList.remove('active'));
@@ -161,6 +204,66 @@
         
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    // 點擊解鎖贊助價
+    function toggleSponsor(el) {
+        const text = el.querySelector('.price-text');
+        const final = el.querySelector('.final-sponsor-price');
+        const subText = el.querySelector('.item-sub');
+        
+        if (final.style.display === 'none' || final.style.display === '') {
+            text.style.display = 'none';
+            final.style.display = 'block';
+            subText.innerHTML = "✨ 已套用公司專案補貼 ✨";
+        } else {
+            text.style.display = 'block';
+            final.style.display = 'none';
+            subText.innerHTML = "原價 23xxx¥ → <span class='important'>點擊解鎖最終價</span>";
+        }
+    }
+
+    // 刮刮樂邏輯
+    function initScratch(canvasId, containerId) {
+        const canvas = document.getElementById(canvasId);
+        const ctx = canvas.getContext('2d');
+        const container = document.getElementById(containerId);
+        
+        canvas.width = container.offsetWidth;
+        canvas.height = container.offsetHeight;
+
+        ctx.fillStyle = '#222';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = '#f1d279';
+        ctx.font = 'bold 15px serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('✨ 刮開領取神秘加碼 ✨', canvas.width/2, canvas.height/2 + 5);
+
+        let isDrawing = false;
+        function scratch(e) {
+            if (!isDrawing) return;
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
+            const y = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
+
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.beginPath();
+            ctx.arc(x, y, 25, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        canvas.addEventListener('mousedown', () => isDrawing = true);
+        canvas.addEventListener('touchstart', () => isDrawing = true);
+        window.addEventListener('mouseup', () => isDrawing = false);
+        window.addEventListener('touchend', () => isDrawing = false);
+        canvas.addEventListener('mousemove', scratch);
+        canvas.addEventListener('touchmove', scratch);
+    }
+
+    // 網頁載入時初始化刮刮樂
+    window.onload = () => {
+        initScratch('canvas-subsidy', 'scratch-subsidy');
+    };
 </script>
 
 </body>
